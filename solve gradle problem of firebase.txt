@@ -1,0 +1,13 @@
+Had this same issue. What worked for me was adding this to my android/app/build.gradle file:
+
+
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if ((requested.group == "org.jetbrains.kotlin") && (requested.name.startsWith("kotlin-stdlib"))) {
+                useVersion("1.8.0")
+            }
+        }
+    }
+}
+    
